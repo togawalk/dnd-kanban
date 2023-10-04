@@ -1,6 +1,8 @@
+import KanbanBoard from "./components/KanbanBoard"
+
 function App() {
   return (
-    <h1>Vite + React</h1>
+    <KanbanBoard />
   )
 }
 

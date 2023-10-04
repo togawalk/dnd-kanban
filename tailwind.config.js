@@ -6,8 +6,10 @@ export default {
   ],
   theme: {
     extend: {
-      "background": "#0D1117",
-      "card-background": "#161C22"
+      colors: {
+        "background": "#0D1117",
+        "secondary": "#161C22"
+      },
     },
   },
   plugins: [],
