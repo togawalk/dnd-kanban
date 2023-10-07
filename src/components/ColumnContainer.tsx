@@ -2,9 +2,8 @@ import { EllipsisVerticalIcon } from '@heroicons/react/24/outline'
 import { Column, Id } from '../types'
 
 interface Props {
-  column: Column;
-  deleteColumn: (id: Id) => void;
-
+  column: Column
+  deleteColumn: (id: Id) => void
 }
 
 function ColumnContainer(props: Props) {
