@@ -10,10 +10,14 @@
     "preview": "vite preview",
     "prepare": "husky install"
   },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
+  },
   "dependencies": {
     "@dnd-kit/core": "^6.0.8",
     "@dnd-kit/sortable": "^7.0.2",
     "@heroicons/react": "^2.0.18",
+    "lint-staged": "^14.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "tailwind-merge": "^1.14.0"
