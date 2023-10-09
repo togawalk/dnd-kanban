@@ -1,5 +1,7 @@
 import { EllipsisVerticalIcon } from '@heroicons/react/24/outline'
 import { Column, Id } from '../types'
+import { useSortable } from '@dnd-kit/sortable'
+import { CSS } from '@dnd-kit/utilities'
 
 interface Props {
   column: Column
@@ -8,9 +10,32 @@ interface Props {
 
 function ColumnContainer(props: Props) {
   const { column, deleteColumn } = props
+
+  const { setNodeRef, attributes, listeners, transform, transition } =
+    useSortable({
+      id: column.id,
+      data: {
+        type: 'Column',
+        column,
+      },
+    })
+
+  const style = {
+    transition,
+    transform: CSS.Transform.toString(transform),
+  }
+
   return (
-    <div className="flex h-[500px] max-h-[500px] w-[350px] flex-col rounded-md bg-secondary">
-      <div className="text-md flex h-[60px] cursor-grab items-center  justify-between rounded-md rounded-b-none border-4 border-secondary bg-background p-3 font-bold">
+    <div
+      ref={setNodeRef}
+      style={style}
+      className="flex h-[500px] max-h-[500px] w-[350px] flex-col rounded-md bg-secondary"
+    >
+      <div
+        {...attributes}
+        {...listeners}
+        className="text-md flex h-[60px] cursor-grab items-center  justify-between rounded-md rounded-b-none border-4 border-secondary bg-background p-3 font-bold"
+      >
         <div className="flex items-center gap-2">{column.title}</div>
         <div className="flex gap-1">
           <div className="flex items-center justify-center py-1 text-gray-500">

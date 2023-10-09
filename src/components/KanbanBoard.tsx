@@ -1,30 +1,41 @@
 import { PlusCircleIcon } from '@heroicons/react/24/outline'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { Column, Id } from '../types'
 import ColumnContainer from './ColumnContainer'
+import { DndContext } from '@dnd-kit/core'
+import { SortableContext } from '@dnd-kit/sortable'
 
 function KanbanBoard() {
   const [columns, setColumns] = useState<Column[]>([])
+  const columnsId = useMemo(() => columns.map((col) => col.id), [columns])
   console.log(columns)
 
   return (
     <div className="m-auto flex min-h-screen w-full items-center overflow-x-auto overflow-y-hidden px-[40px]">
-      <div className="m-auto flex gap-4">
-        <div className="flex gap-4">
-          {columns.map((col) => (
-            <ColumnContainer column={col} deleteColumn={deleteColumn} />
-          ))}
+      <DndContext>
+        <div className="m-auto flex gap-4">
+          <div className="flex gap-4">
+            <SortableContext items={columnsId}>
+              {columns.map((col) => (
+                <ColumnContainer
+                  key={col.id}
+                  column={col}
+                  deleteColumn={deleteColumn}
+                />
+              ))}
+            </SortableContext>
+          </div>
+          <button
+            type="button"
+            className="flex h-[60px] w-[360px] min-w-[350px] cursor-pointer gap-2 rounded-lg border-2 border-secondary bg-background p-4 ring-rose-500 hover:ring-2"
+            onClick={() => {
+              createNewColumn()
+            }}
+          >
+            <PlusCircleIcon className="h-6 w-6" /> Add Column
+          </button>
         </div>
-        <button
-          type="button"
-          className="flex h-[60px] w-[360px] min-w-[350px] cursor-pointer gap-2 rounded-lg border-2 border-secondary bg-background p-4 ring-rose-500 hover:ring-2"
-          onClick={() => {
-            createNewColumn()
-          }}
-        >
-          <PlusCircleIcon className="h-6 w-6" /> Add Column
-        </button>
-      </div>
+      </DndContext>
     </div>
   )
   function createNewColumn() {
