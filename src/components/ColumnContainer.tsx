@@ -2,14 +2,17 @@ import { EllipsisVerticalIcon } from '@heroicons/react/24/outline'
 import { Column, Id } from '../types'
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
+import { useState } from 'react'
 
 interface Props {
   column: Column
   deleteColumn: (id: Id) => void
+  updateColumn: (id: Id, title: string) => void
 }
 
 function ColumnContainer(props: Props) {
-  const { column, deleteColumn } = props
+  const { column, deleteColumn, updateColumn } = props
+  const [editMode, setEditMode] = useState(false)
 
   const {
     setNodeRef,
@@ -24,6 +27,7 @@ function ColumnContainer(props: Props) {
       type: 'Column',
       column,
     },
+    disabled: editMode,
   })
 
   const style = {
@@ -47,7 +51,10 @@ function ColumnContainer(props: Props) {
       style={style}
       className="flex h-[500px] max-h-[500px] w-[350px] flex-col rounded-md bg-secondary"
     >
-      <div className="text-md flex h-[60px] cursor-grab items-center  justify-between rounded-md rounded-b-none border-4 border-secondary bg-background p-3 font-bold">
+      <div
+        className="text-md flex h-[60px] cursor-grab items-center  justify-between rounded-md rounded-b-none border-4 border-secondary bg-background p-3 font-bold"
+        onClick={() => setEditMode(true)}
+      >
         <div className="flex items-center gap-2">
           <button
             {...attributes}
@@ -57,7 +64,22 @@ function ColumnContainer(props: Props) {
           >
             <EllipsisVerticalIcon className="h-6 stroke-gray-500 " />
           </button>
-          {column.title}
+          {!editMode && column.title}
+          {editMode && (
+            <input
+              className="rounded border bg-black px-2 outline-none focus:border-rose-500"
+              autoFocus
+              onChange={(e) => updateColumn(column.id, e.target.value)}
+              value={column.title}
+              onBlur={() => {
+                setEditMode(false)
+              }}
+              onKeyDown={(e) => {
+                if (e.key !== 'Enter') return
+                setEditMode(false)
+              }}
+            />
+          )}
         </div>
         <div className="flex gap-1">
           <div className="flex items-center justify-center py-1 text-gray-500">

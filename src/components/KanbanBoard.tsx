@@ -7,6 +7,9 @@ import {
   DragEndEvent,
   DragOverlay,
   DragStartEvent,
+  PointerSensor,
+  useSensor,
+  useSensors,
 } from '@dnd-kit/core'
 import { SortableContext, arrayMove } from '@dnd-kit/sortable'
 import { createPortal } from 'react-dom'
@@ -19,12 +22,21 @@ function KanbanBoard() {
 
   const [activeColumn, setActiveColumn] = useState<Column | null>(null)
 
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 3,
+      },
+    })
+  )
+
   return (
     <div className="m-auto flex min-h-screen w-full items-center overflow-x-auto overflow-y-hidden px-[40px]">
       <DndContext
         onDragStart={onDragStart}
         onDragEnd={onDragEnd}
         modifiers={[restrictToParentElement]}
+        sensors={sensors}
       >
         <div className="m-auto flex gap-4">
           <div className="flex gap-4">
@@ -34,6 +46,7 @@ function KanbanBoard() {
                   key={col.id}
                   column={col}
                   deleteColumn={deleteColumn}
+                  updateColumn={updateColumn}
                 />
               ))}
             </SortableContext>
@@ -54,6 +67,7 @@ function KanbanBoard() {
               <ColumnContainer
                 column={activeColumn}
                 deleteColumn={deleteColumn}
+                updateColumn={updateColumn}
               />
             )}
           </DragOverlay>,
@@ -73,6 +87,14 @@ function KanbanBoard() {
   function deleteColumn(id: Id) {
     const filteredColumns = columns.filter((col) => col.id !== id)
     setColumns(filteredColumns)
+  }
+
+  function updateColumn(id: Id, title: string) {
+    const newColumns = columns.map((col) => {
+      if (col.id !== id) return col
+      return { ...col, title }
+    })
+    setColumns(newColumns)
   }
 
   function onDragStart(event: DragStartEvent) {
