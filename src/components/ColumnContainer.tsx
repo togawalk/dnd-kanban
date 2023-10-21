@@ -51,11 +51,8 @@ function ColumnContainer(props: Props) {
       style={style}
       className="flex h-[500px] max-h-[500px] w-[350px] flex-col rounded-md bg-secondary"
     >
-      <div
-        className="text-md flex h-[60px] cursor-grab items-center  justify-between rounded-md rounded-b-none border-4 border-secondary bg-background p-3 font-bold"
-        onClick={() => setEditMode(true)}
-      >
-        <div className="flex items-center gap-2">
+      <div className="text-md flex h-[60px] cursor-grab items-center  justify-between rounded-md rounded-b-none border-4 border-secondary bg-background p-3 font-bold">
+        <div className="flex flex-1 items-center gap-2">
           <button
             {...attributes}
             {...listeners}
@@ -64,22 +61,24 @@ function ColumnContainer(props: Props) {
           >
             <EllipsisVerticalIcon className="h-6 stroke-gray-500 " />
           </button>
-          {!editMode && column.title}
-          {editMode && (
-            <input
-              className="rounded border bg-black px-2 outline-none focus:border-rose-500"
-              autoFocus
-              onChange={(e) => updateColumn(column.id, e.target.value)}
-              value={column.title}
-              onBlur={() => {
-                setEditMode(false)
-              }}
-              onKeyDown={(e) => {
-                if (e.key !== 'Enter') return
-                setEditMode(false)
-              }}
-            />
-          )}
+          <div onClick={() => setEditMode(true)} className="w-full">
+            {!editMode && column.title}
+            {editMode && (
+              <input
+                className="rounded border bg-black px-2 outline-none focus:border-rose-500"
+                autoFocus
+                onChange={(e) => updateColumn(column.id, e.target.value)}
+                value={column.title}
+                onBlur={() => {
+                  setEditMode(false)
+                }}
+                onKeyDown={(e) => {
+                  if (e.key !== 'Enter') return
+                  setEditMode(false)
+                }}
+              />
+            )}
+          </div>
         </div>
         <div className="flex gap-1">
           <div className="flex items-center justify-center py-1 text-gray-500">
