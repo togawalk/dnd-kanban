@@ -11,18 +11,34 @@ interface Props {
 function ColumnContainer(props: Props) {
   const { column, deleteColumn } = props
 
-  const { setNodeRef, attributes, listeners, transform, transition } =
-    useSortable({
-      id: column.id,
-      data: {
-        type: 'Column',
-        column,
-      },
-    })
+  const {
+    setNodeRef,
+    attributes,
+    listeners,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({
+    id: column.id,
+    data: {
+      type: 'Column',
+      column,
+    },
+  })
 
   const style = {
     transition,
     transform: CSS.Transform.toString(transform),
+  }
+
+  if (isDragging) {
+    return (
+      <div
+        ref={setNodeRef}
+        style={style}
+        className="flex h-[500px] max-h-[500px] w-[350px] flex-col rounded-md border-2 border-rose-500 bg-secondary opacity-40"
+      ></div>
+    )
   }
 
   return (
@@ -31,12 +47,18 @@ function ColumnContainer(props: Props) {
       style={style}
       className="flex h-[500px] max-h-[500px] w-[350px] flex-col rounded-md bg-secondary"
     >
-      <div
-        {...attributes}
-        {...listeners}
-        className="text-md flex h-[60px] cursor-grab items-center  justify-between rounded-md rounded-b-none border-4 border-secondary bg-background p-3 font-bold"
-      >
-        <div className="flex items-center gap-2">{column.title}</div>
+      <div className="text-md flex h-[60px] cursor-grab items-center  justify-between rounded-md rounded-b-none border-4 border-secondary bg-background p-3 font-bold">
+        <div className="flex items-center gap-2">
+          <button
+            {...attributes}
+            {...listeners}
+            type="button"
+            className="rounded px-1 py-1 hover:bg-secondary hover:stroke-white"
+          >
+            <EllipsisVerticalIcon className="h-6 stroke-gray-500 " />
+          </button>
+          {column.title}
+        </div>
         <div className="flex gap-1">
           <div className="flex items-center justify-center py-1 text-gray-500">
             0
