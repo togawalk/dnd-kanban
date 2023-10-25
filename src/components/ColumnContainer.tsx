@@ -1,17 +1,23 @@
-import { EllipsisVerticalIcon } from '@heroicons/react/24/outline'
-import { Column, Id } from '../types'
+import {
+  EllipsisVerticalIcon,
+  PlusCircleIcon,
+} from '@heroicons/react/24/outline'
+import { Column, Id, Task } from '../types'
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 import { useState } from 'react'
+import TaskCard from './TaskCard'
 
 interface Props {
   column: Column
   deleteColumn: (id: Id) => void
   updateColumn: (id: Id, title: string) => void
+  createTask: (columnId: Id) => void
+  tasks: Task[]
 }
 
 function ColumnContainer(props: Props) {
-  const { column, deleteColumn, updateColumn } = props
+  const { column, deleteColumn, updateColumn, createTask, tasks } = props
   const [editMode, setEditMode] = useState(false)
 
   const {
@@ -95,8 +101,20 @@ function ColumnContainer(props: Props) {
           </button>
         </div>
       </div>
-      <div className="flex flex-grow">Content</div>
-      <div>Footer</div>
+      <div className="flex flex-grow flex-col gap-4 overflow-y-auto overflow-x-hidden p-2">
+        {tasks.map((task) => (
+          <TaskCard key={task.id} task={task} />
+        ))}
+      </div>
+      <button
+        type="button"
+        className="flex items-center gap-2 rounded-md border-2 border-secondary p-4 hover:bg-background hover:text-rose-500 active:bg-black"
+        onClick={() => {
+          createTask(column.id)
+        }}
+      >
+        <PlusCircleIcon className="h-6 w-6" /> Add Column Add task
+      </button>
     </div>
   )
 }

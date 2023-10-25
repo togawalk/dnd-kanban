@@ -1,6 +1,6 @@
 import { PlusCircleIcon } from '@heroicons/react/24/outline'
 import { useMemo, useState } from 'react'
-import { Column, Id } from '../types'
+import { Column, Id, Task } from '../types'
 import ColumnContainer from './ColumnContainer'
 import {
   DndContext,
@@ -17,11 +17,10 @@ import { restrictToParentElement } from '@dnd-kit/modifiers'
 
 function KanbanBoard() {
   const [columns, setColumns] = useState<Column[]>([])
-  const columnsId = useMemo(() => columns.map((col) => col.id), [columns])
-  console.log(columns)
-
   const [activeColumn, setActiveColumn] = useState<Column | null>(null)
+  const [tasks, setTasks] = useState<Task[]>([])
 
+  const columnsId = useMemo(() => columns.map((col) => col.id), [columns])
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
@@ -47,6 +46,8 @@ function KanbanBoard() {
                   column={col}
                   deleteColumn={deleteColumn}
                   updateColumn={updateColumn}
+                  createTask={createTask}
+                  tasks={tasks.filter((task) => task.columnId === col.id)}
                 />
               ))}
             </SortableContext>
@@ -68,6 +69,8 @@ function KanbanBoard() {
                 column={activeColumn}
                 deleteColumn={deleteColumn}
                 updateColumn={updateColumn}
+                createTask={createTask}
+                tasks={tasks}
               />
             )}
           </DragOverlay>,
@@ -76,6 +79,16 @@ function KanbanBoard() {
       </DndContext>
     </div>
   )
+
+  function createTask(columnId: Id) {
+    const newTask: Task = {
+      id: generatedId(),
+      columnId,
+      content: `Task ${tasks.length + 1}`,
+    }
+    setTasks([...tasks, newTask])
+  }
+
   function createNewColumn() {
     const columnToAdd: Column = {
       id: generatedId(),
