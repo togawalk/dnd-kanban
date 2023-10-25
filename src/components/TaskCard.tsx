@@ -1,8 +1,4 @@
-import {
-  EllipsisVerticalIcon,
-  XCircleIcon,
-  XMarkIcon,
-} from '@heroicons/react/24/outline'
+import { XCircleIcon } from '@heroicons/react/24/outline'
 import { Task } from '../types'
 
 interface Props {
