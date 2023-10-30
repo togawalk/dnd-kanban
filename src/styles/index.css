@@ -7,3 +7,19 @@ body,
 #root {
   @apply box-border bg-black text-white;
 }
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar:horizontal {
+  height: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply border-2 border-dashed border-rose-600;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-secondary;
+}
