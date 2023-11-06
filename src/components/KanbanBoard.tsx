@@ -99,7 +99,7 @@ function KanbanBoard() {
 
   function createTask(columnId: Id) {
     const newTask: Task = {
-      id: generatedId(),
+      id: generateId(),
       columnId,
       content: `Task ${tasks.length + 1}`,
     }
@@ -123,7 +123,7 @@ function KanbanBoard() {
 
   function createNewColumn() {
     const columnToAdd: Column = {
-      id: generatedId(),
+      id: generateId(),
       title: `Column ${columns.length + 1}`,
     }
 
@@ -168,6 +168,9 @@ function KanbanBoard() {
 
     if (activeColumnId === overColumnId) return
 
+    const isActiveAColumn = active.data.current?.type === 'Column'
+    if (!isActiveAColumn) return
+
     setColumns((columns) => {
       const activeColumnIndex = columns.findIndex(
         (col) => col.id === activeColumnId
@@ -185,10 +188,10 @@ function KanbanBoard() {
     const { active, over } = event
     if (!over) return
 
-    const activeId = active.id
-    const overId = over.id
+    const activeTaskId = active.id
+    const overTaskId = over.id
 
-    if (activeId === overId) return
+    if (activeTaskId === overTaskId) return
 
     const isActiveTask = active.data.current?.type === 'Task'
     const isOverTask = over.data.current?.type === 'Task'
@@ -199,10 +202,13 @@ function KanbanBoard() {
 
     if (isActiveTask && isOverTask) {
       setTasks((tasks) => {
-        const activeIndex = tasks.findIndex((t) => t.id === activeId)
-        const overIndex = tasks.findIndex((t) => t.id === overId)
+        const activeIndex = tasks.findIndex((t) => t.id === activeTaskId)
+        const overIndex = tasks.findIndex((t) => t.id === overTaskId)
 
-        tasks[activeIndex].columnId = tasks[overIndex].columnId
+        if (tasks[activeIndex].columnId != tasks[overIndex].columnId) {
+          tasks[activeIndex].columnId = tasks[overIndex].columnId
+          return arrayMove(tasks, activeIndex, overIndex - 1)
+        }
 
         return arrayMove(tasks, activeIndex, overIndex)
       })
@@ -212,9 +218,9 @@ function KanbanBoard() {
 
     if (isActiveTask && isOverColumn) {
       setTasks((tasks) => {
-        const activeIndex = tasks.findIndex((t) => t.id === activeId)
+        const activeIndex = tasks.findIndex((t) => t.id === activeTaskId)
 
-        tasks[activeIndex].columnId = overId
+        tasks[activeIndex].columnId = overTaskId
 
         return arrayMove(tasks, activeIndex, activeIndex)
       })
@@ -222,7 +228,7 @@ function KanbanBoard() {
   }
 }
 
-function generatedId() {
+function generateId() {
   // Generate a random number between 0 and 10000
   return Math.floor(Math.random() * 10001)
 }
