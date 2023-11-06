@@ -5,6 +5,7 @@ import ColumnContainer from './ColumnContainer'
 import {
   DndContext,
   DragEndEvent,
+  DragOverEvent,
   DragOverlay,
   DragStartEvent,
   PointerSensor,
@@ -14,11 +15,14 @@ import {
 import { SortableContext, arrayMove } from '@dnd-kit/sortable'
 import { createPortal } from 'react-dom'
 import { restrictToParentElement } from '@dnd-kit/modifiers'
+import TaskCard from './TaskCard'
 
 function KanbanBoard() {
   const [columns, setColumns] = useState<Column[]>([])
   const [activeColumn, setActiveColumn] = useState<Column | null>(null)
   const [tasks, setTasks] = useState<Task[]>([])
+
+  const [activeTask, setActiveTask] = useState<Task | null>(null)
 
   const columnsId = useMemo(() => columns.map((col) => col.id), [columns])
   const sensors = useSensors(
@@ -34,8 +38,8 @@ function KanbanBoard() {
       <DndContext
         onDragStart={onDragStart}
         onDragEnd={onDragEnd}
-        modifiers={[restrictToParentElement]}
         sensors={sensors}
+        onDragOver={onDragOver}
       >
         <div className="m-auto flex gap-4">
           <div className="flex gap-4">
@@ -77,6 +81,13 @@ function KanbanBoard() {
                 tasks={tasks.filter(
                   (task) => task.columnId === activeColumn.id
                 )}
+              />
+            )}
+            {activeTask && (
+              <TaskCard
+                task={activeTask}
+                deleteTask={deleteTask}
+                updateTask={updateTask}
               />
             )}
           </DragOverlay>,
@@ -140,9 +151,15 @@ function KanbanBoard() {
       setActiveColumn(event.active.data.current.column)
       return
     }
+    if (event.active.data.current?.type === 'Task') {
+      setActiveTask(event.active.data.current.task)
+      return
+    }
   }
 
   function onDragEnd(event: DragEndEvent) {
+    setActiveColumn(null)
+    setActiveTask(null)
     const { active, over } = event
     if (!over) return
 
@@ -162,6 +179,46 @@ function KanbanBoard() {
 
       return arrayMove(columns, activeColumnIndex, overColumnIndex)
     })
+  }
+
+  function onDragOver(event: DragOverEvent) {
+    const { active, over } = event
+    if (!over) return
+
+    const activeId = active.id
+    const overId = over.id
+
+    if (activeId === overId) return
+
+    const isActiveTask = active.data.current?.type === 'Task'
+    const isOverTask = over.data.current?.type === 'Task'
+
+    if (!isActiveTask) {
+      return
+    }
+
+    if (isActiveTask && isOverTask) {
+      setTasks((tasks) => {
+        const activeIndex = tasks.findIndex((t) => t.id === activeId)
+        const overIndex = tasks.findIndex((t) => t.id === overId)
+
+        tasks[activeIndex].columnId = tasks[overIndex].columnId
+
+        return arrayMove(tasks, activeIndex, overIndex)
+      })
+    }
+
+    const isOverColumn = over.data.current?.type === 'Column'
+
+    if (isActiveTask && isOverColumn) {
+      setTasks((tasks) => {
+        const activeIndex = tasks.findIndex((t) => t.id === activeId)
+
+        tasks[activeIndex].columnId = overId
+
+        return arrayMove(tasks, activeIndex, activeIndex)
+      })
+    }
   }
 }
 

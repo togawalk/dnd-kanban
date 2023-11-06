@@ -13,13 +13,17 @@ body,
 }
 
 ::-webkit-scrollbar:horizontal {
-  height: 12px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply border-2 border-dashed border-rose-600;
+  @apply rounded-xl bg-rose-900;
 }
 
 ::-webkit-scrollbar-track {
   @apply bg-secondary;
+}
+
+.task > ::-webkit-scrollbar-thumb {
+  @apply rounded-xl bg-sky-500;
 }
