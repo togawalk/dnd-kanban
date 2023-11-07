@@ -5,7 +5,7 @@ import {
 import { Column, Id, Task } from '../types'
 import { SortableContext, useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import TaskCard from './TaskCard'
 
 interface Props {
@@ -29,6 +29,12 @@ function ColumnContainer(props: Props) {
     updateTask,
   } = props
   const [editMode, setEditMode] = useState(false)
+
+  const [tasksListLength, settasksListLength] = useState(tasks.length)
+
+  useEffect(() => {
+    settasksListLength(tasks.length)
+  }, [tasks])
 
   const tasksIds = useMemo(() => {
     return tasks.map((task) => task.id)
@@ -102,7 +108,7 @@ function ColumnContainer(props: Props) {
         </div>
         <div className="flex gap-1 gap-2">
           <div className="flex items-center justify-center py-1 text-gray-500">
-            0
+            {tasksListLength}
           </div>
           <button
             type="button"
