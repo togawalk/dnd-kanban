@@ -56,7 +56,7 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
         style={style}
         {...attributes}
         {...listeners}
-        className="task flex h-[100px] min-h-[100px] cursor-grab items-start rounded bg-background p-2 ring-2 ring-inset ring-rose-900"
+        className="task flex h-[100px] min-h-[100px] cursor-grab items-start gap-2 break-all rounded bg-background p-2 ring-2 ring-inset ring-rose-900"
       >
         <textarea
           name=""
