@@ -1,4 +1,4 @@
-import { MinusIcon, XCircleIcon } from '@heroicons/react/24/outline'
+import { MinusIcon } from '@heroicons/react/24/outline'
 import { Id, Task } from '../types'
 import { useState } from 'react'
 import { useSortable } from '@dnd-kit/sortable'

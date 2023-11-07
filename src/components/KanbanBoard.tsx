@@ -14,7 +14,6 @@ import {
 } from '@dnd-kit/core'
 import { SortableContext, arrayMove } from '@dnd-kit/sortable'
 import { createPortal } from 'react-dom'
-import { restrictToParentElement } from '@dnd-kit/modifiers'
 import TaskCard from './TaskCard'
 
 const defaultCols: Column[] = [
