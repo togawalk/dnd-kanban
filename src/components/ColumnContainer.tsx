@@ -1,5 +1,6 @@
 import {
   EllipsisVerticalIcon,
+  MinusIcon,
   PlusCircleIcon,
 } from '@heroicons/react/24/outline'
 import { Column, Id, Task } from '../types'
@@ -87,7 +88,7 @@ function ColumnContainer(props: Props) {
           >
             <EllipsisVerticalIcon className="h-6 stroke-gray-500 " />
           </button>
-          <div onClick={() => setEditMode(true)} className="h-6 w-full">
+          <div onDoubleClick={() => setEditMode(true)} className="h-6 w-full">
             {!editMode && column.title}
             {editMode && (
               <input
@@ -117,7 +118,7 @@ function ColumnContainer(props: Props) {
               deleteColumn(column.id)
             }}
           >
-            <EllipsisVerticalIcon className="h-6 stroke-gray-500 " />
+            <MinusIcon className="h-6 stroke-gray-500 " />
           </button>
         </div>
       </div>

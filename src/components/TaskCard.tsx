@@ -1,7 +1,6 @@
-import { XCircleIcon } from '@heroicons/react/24/outline'
+import { MinusIcon, XCircleIcon } from '@heroicons/react/24/outline'
 import { Id, Task } from '../types'
 import { useState } from 'react'
-import { EllipsisVerticalIcon } from '@heroicons/react/24/outline'
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 
@@ -56,7 +55,7 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
         style={style}
         {...attributes}
         {...listeners}
-        className="task flex h-[100px] min-h-[100px] cursor-grab items-start gap-2 break-all rounded bg-background p-2 ring-2 ring-inset ring-rose-900"
+        className="task flex h-[100px] min-h-[100px] cursor-grab items-start gap-2 break-all rounded bg-background p-2 ring-2 ring-inset ring-orange-600"
       >
         <textarea
           name=""
@@ -81,7 +80,7 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
           type="button"
           className="rounded px-1 py-1 hover:bg-secondary hover:stroke-white"
         >
-          <EllipsisVerticalIcon className="h-6 stroke-gray-500" />
+          <MinusIcon className="h-6 stroke-gray-500" />
         </button>
       </div>
     )
@@ -93,8 +92,8 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
       style={style}
       {...attributes}
       {...listeners}
-      onClick={toggleEditMode}
-      className="task flex h-[100px] min-h-[100px] cursor-grab items-start gap-2 rounded bg-background p-2 hover:ring-2 hover:ring-inset hover:ring-rose-900"
+      onDoubleClick={toggleEditMode}
+      className="task flex h-[100px] min-h-[100px] cursor-grab items-start gap-2 rounded bg-background p-2 hover:ring-2 hover:ring-inset hover:ring-rose-800"
     >
       <p className="my-auto h-[100%] w-full overflow-y-auto whitespace-pre-wrap break-all">
         {task.content}
@@ -106,7 +105,7 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
         type="button"
         className="rounded px-1 py-1 hover:bg-secondary hover:stroke-white"
       >
-        <EllipsisVerticalIcon className="h-6 stroke-gray-500" />
+        <MinusIcon className="h-6 stroke-gray-500" />
       </button>
     </div>
   )
