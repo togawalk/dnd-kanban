@@ -17,10 +17,33 @@ import { createPortal } from 'react-dom'
 import { restrictToParentElement } from '@dnd-kit/modifiers'
 import TaskCard from './TaskCard'
 
+const defaultCols: Column[] = [
+  {
+    id: 'todo',
+    title: 'TODO',
+  },
+  {
+    id: 'in_progress',
+    title: 'IN PROGRESS',
+  },
+  {
+    id: 'done',
+    title: 'DONE',
+  },
+]
+
+const defaultTasks: Task[] = [
+  {
+    id: '1',
+    columnId: 'todo',
+    content: 'Example todo item',
+  },
+]
+
 function KanbanBoard() {
-  const [columns, setColumns] = useState<Column[]>([])
+  const [columns, setColumns] = useState<Column[]>(defaultCols)
   const [activeColumn, setActiveColumn] = useState<Column | null>(null)
-  const [tasks, setTasks] = useState<Task[]>([])
+  const [tasks, setTasks] = useState<Task[]>(defaultTasks)
 
   const [activeTask, setActiveTask] = useState<Task | null>(null)
 
