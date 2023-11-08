@@ -88,7 +88,10 @@ function ColumnContainer(props: Props) {
           >
             <EllipsisVerticalIcon className="h-6 stroke-gray-500 " />
           </button>
-          <div onDoubleClick={() => setEditMode(true)} className="h-6 w-full">
+          <div
+            onDoubleClick={() => setEditMode(true)}
+            className="h-6 w-full font-mono text-slate-200"
+          >
             {!editMode && column.title}
             {editMode && (
               <input
@@ -136,12 +139,12 @@ function ColumnContainer(props: Props) {
       </div>
       <button
         type="button"
-        className="flex items-center gap-2 rounded-md border-2 border-secondary p-4 hover:bg-background hover:text-rose-500 active:bg-black"
+        className="flex items-center gap-2 rounded-md border-2 border-secondary p-4 font-mono text-slate-200 hover:bg-background hover:text-rose-500 active:bg-black"
         onClick={() => {
           createTask(column.id)
         }}
       >
-        <PlusCircleIcon className="h-6 w-6" /> Add Column Add task
+        <PlusCircleIcon className="h-6 w-6" /> Add task
       </button>
     </div>
   )

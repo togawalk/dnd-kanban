@@ -50,7 +50,7 @@ function KanbanBoard() {
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
-        distance: 3,
+        distance: 10,
       },
     })
   )
@@ -82,7 +82,7 @@ function KanbanBoard() {
           </div>
           <button
             type="button"
-            className="flex h-[60px] w-[360px] min-w-[350px] cursor-pointer gap-2 rounded-lg border-2 border-secondary bg-background p-4 ring-rose-500 hover:ring-2"
+            className="flex h-[60px] w-[360px] min-w-[350px] cursor-pointer gap-2 rounded-lg border-2 border-secondary bg-background p-4 font-mono text-slate-200 ring-rose-500 hover:ring-2"
             onClick={() => {
               createNewColumn()
             }}
