@@ -1,6 +1,6 @@
 import { PlusCircleIcon } from '@heroicons/react/24/outline'
 import { useMemo, useState } from 'react'
-import { Column, Id, Task } from '../types'
+import { Column, Id, Task } from '@/types'
 import ColumnContainer from './ColumnContainer'
 import {
   DndContext,

@@ -3,7 +3,7 @@ import {
   MinusIcon,
   PlusCircleIcon,
 } from '@heroicons/react/24/outline'
-import { Column, Id, Task } from '../types'
+import { Column, Id, Task } from '@/types'
 import { SortableContext, useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 import { useEffect, useMemo, useState } from 'react'

@@ -1,5 +1,5 @@
 import { MinusIcon } from '@heroicons/react/24/outline'
-import { Id, Task } from '../types'
+import { Id, Task } from '@/types'
 import { useState } from 'react'
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
