@@ -67,7 +67,7 @@ function ColumnContainer(props: Props) {
       <div
         ref={setNodeRef}
         style={style}
-        className="flex h-[500px] max-h-[500px] w-[350px] flex-col rounded-md border-2 border-rose-500 bg-secondary opacity-40"
+        className="flex w-[350px] flex-col rounded-md border-2 border-rose-500 bg-secondary opacity-40"
       ></div>
     )
   }
@@ -76,21 +76,20 @@ function ColumnContainer(props: Props) {
     <div
       ref={setNodeRef}
       style={style}
-      className="flex h-[500px] max-h-[500px] w-[350px] flex-col rounded-md bg-secondary"
+      className="flex w-[350px] flex-col rounded-md bg-gray-200 dark:bg-secondary"
     >
-      <div className="flex h-[60px] cursor-grab items-center justify-between  gap-4 rounded-md rounded-b-none border-4 border-secondary bg-background p-3 font-bold">
+      <div className="flex h-[60px] items-center justify-between  gap-4 rounded-md rounded-b-none border-4 p-3 font-bold dark:border-secondary dark:bg-background">
         <div className="flex flex-1 items-center gap-2">
-          <button
+          <div
             {...attributes}
             {...listeners}
-            type="button"
-            className="rounded px-1 py-1 hover:bg-secondary hover:stroke-white"
+            className="cursor-grab rounded px-1 py-1 hover:bg-gray-300 hover:stroke-white dark:hover:bg-secondary"
           >
             <EllipsisVerticalIcon className="h-6 stroke-gray-500 " />
-          </button>
+          </div>
           <div
             onDoubleClick={() => setEditMode(true)}
-            className="h-6 w-full font-mono text-slate-200"
+            className="h-6 w-full dark:text-slate-200"
           >
             {!editMode && column.title}
             {editMode && (
@@ -116,7 +115,7 @@ function ColumnContainer(props: Props) {
           </div>
           <button
             type="button"
-            className="rounded px-1 py-1 hover:bg-secondary hover:stroke-white"
+            className="rounded px-1 py-1 hover:bg-gray-300 hover:stroke-white dark:hover:bg-secondary"
             onClick={() => {
               deleteColumn(column.id)
             }}
@@ -139,7 +138,7 @@ function ColumnContainer(props: Props) {
       </div>
       <button
         type="button"
-        className="flex items-center gap-2 rounded-md border-2 border-secondary p-4 font-mono text-slate-200 hover:bg-background hover:text-rose-500 active:bg-black"
+        className="flex items-center gap-2 rounded-md border-2 p-4 hover:bg-gray-300 hover:text-rose-500 dark:border-secondary dark:text-slate-200 dark:hover:bg-background dark:hover:text-rose-500"
         onClick={() => {
           createTask(column.id)
         }}

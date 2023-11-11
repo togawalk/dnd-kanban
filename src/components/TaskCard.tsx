@@ -55,12 +55,12 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
         style={style}
         {...attributes}
         {...listeners}
-        className="task flex h-[100px] min-h-[100px] cursor-grab items-start gap-2 break-all rounded bg-background p-2 ring-2 ring-inset ring-orange-600"
+        className="task flex h-[100px] min-h-[100px] cursor-grab items-start gap-2 break-all rounded bg-background bg-gray-300 p-2 ring-2 ring-inset ring-orange-600"
       >
         <textarea
           name=""
           id=""
-          className="h-full w-full resize-none rounded border-none bg-transparent text-white focus:outline-none"
+          className="h-full w-full resize-none rounded border-none bg-transparent focus:outline-none dark:text-white"
           value={task.content}
           autoFocus
           placeholder="Task content here"
@@ -93,7 +93,7 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
       {...attributes}
       {...listeners}
       onDoubleClick={toggleEditMode}
-      className="task flex h-[100px] min-h-[100px] cursor-grab items-start gap-2 rounded bg-background p-2 hover:ring-2 hover:ring-inset hover:ring-rose-800"
+      className="task flex h-[100px] min-h-[100px] cursor-grab items-start gap-2 rounded bg-gray-300 p-2 hover:ring-2 hover:ring-inset hover:ring-rose-800 dark:bg-background"
     >
       <p className="my-auto h-[100%] w-full overflow-y-auto whitespace-pre-wrap break-all">
         {task.content}

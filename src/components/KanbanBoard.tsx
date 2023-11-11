@@ -56,14 +56,14 @@ function KanbanBoard() {
   )
 
   return (
-    <div className="m-auto flex min-h-screen w-full items-center overflow-x-auto overflow-y-hidden px-[40px]">
+    <div className="flex flex-1 overflow-x-auto pb-4">
       <DndContext
         onDragStart={onDragStart}
         onDragEnd={onDragEnd}
         sensors={sensors}
         onDragOver={onDragOver}
       >
-        <div className="m-auto flex gap-4">
+        <div className="flex gap-4">
           <div className="flex gap-4">
             <SortableContext items={columnsId}>
               {columns.map((col) => (
@@ -82,7 +82,7 @@ function KanbanBoard() {
           </div>
           <button
             type="button"
-            className="flex h-[60px] w-[360px] min-w-[350px] cursor-pointer gap-2 rounded-lg border-2 border-secondary bg-background p-4 font-mono text-slate-200 ring-rose-500 hover:ring-2"
+            className="flex h-[60px] w-[360px] min-w-[350px] cursor-pointer gap-2 rounded-lg border-2 border-gray-300 bg-gray-200 p-4 hover:border-rose-600 dark:border-secondary dark:bg-background dark:text-slate-200 dark:hover:border-rose-600"
             onClick={() => {
               createNewColumn()
             }}
