@@ -5,7 +5,7 @@
 html,
 body,
 #root {
-  @apply box-border bg-white font-mono text-slate-900 dark:bg-black dark:text-white;
+  @apply box-border font-mono text-slate-900 dark:text-white;
 }
 
 ::-webkit-scrollbar {

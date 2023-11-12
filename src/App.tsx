@@ -5,18 +5,39 @@ import { createContext, useEffect, useState } from 'react'
 export const ThemeContext = createContext(null)
 
 function App() {
-  const [isDarkMode, setDarkMode] = useState(true)
+  const [isDarkMode, setDarkMode] = useState(
+    localStorage.getItem('theme') === 'dark' ? true : false
+  )
+  console.log(isDarkMode)
   const htmlDoc = document.documentElement
+  const darkQuerry = window.matchMedia('(prefers-color-scheme: dark)')
 
   const toggleDarkMode = (checked: boolean) => {
     setDarkMode(checked)
   }
 
+  function onWindowMatch() {
+    if (
+      localStorage.theme === 'dark' ||
+      (!('theme' in localStorage) && darkQuerry.matches)
+    ) {
+      htmlDoc.classList.add('dark')
+      setDarkMode(true)
+    } else {
+      htmlDoc.classList.remove('dark')
+      setDarkMode(false)
+    }
+  }
+
+  onWindowMatch
+
   useEffect(() => {
     if (isDarkMode) {
       htmlDoc.classList.add('dark')
+      localStorage.setItem('theme', 'dark')
     } else {
       htmlDoc.classList.remove('dark')
+      localStorage.setItem('theme', 'light')
     }
   }, [isDarkMode])
 
