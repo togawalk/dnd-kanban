@@ -1,6 +1,7 @@
 import KanbanBoard from './components/KanbanBoard'
 import { DarkModeSwitch } from 'react-toggle-dark-mode'
 import { createContext, useEffect, useState } from 'react'
+import { AiFillGithub } from 'react-icons/ai'
 
 export const ThemeContext = createContext(null)
 
@@ -46,11 +47,22 @@ function App() {
       <header className="h-16 rounded-md border-4 border-gray-300 bg-gray-200 font-mono dark:border-secondary dark:bg-background">
         <div className="flex h-full items-center justify-between px-6">
           <div className="font-bold uppercase">dnd-kanban</div>
-          <DarkModeSwitch
-            checked={isDarkMode}
-            onChange={toggleDarkMode}
-            size={20}
-          />
+          <div className="flex items-center space-x-4">
+            <DarkModeSwitch
+              checked={isDarkMode}
+              onChange={toggleDarkMode}
+              size={20}
+              sunColor="rgb(17 24 39 / var(--tw-text-opacity))"
+              moonColor="rgb(229 231 235 / var(--tw-text-opacity))"
+            />
+
+            <a
+              href="https://github.com/togawalk/dnd-kanban"
+              className="text-gray-900 dark:text-gray-200"
+            >
+              <AiFillGithub className="h-6 w-6" />
+            </a>
+          </div>
         </div>
       </header>
       <KanbanBoard />
