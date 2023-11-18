@@ -43,7 +43,7 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
       <div
         ref={setNodeRef}
         style={style}
-        className="task flex h-[100px] min-h-[100px] cursor-grab items-start rounded border-2 border-rose-500 bg-background p-2 opacity-30"
+        className="task flex h-[100px] min-h-[100px] cursor-grab items-start rounded border-2 border-rose-500 bg-gray-100 p-2 opacity-30 dark:bg-background"
       />
     )
   }
@@ -103,7 +103,7 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
           deleteTask(task.id)
         }}
         type="button"
-        className="rounded px-1 py-1 hover:bg-secondary hover:stroke-white"
+        className="rounded px-1 py-1 hover:bg-gray-400/30 hover:stroke-white dark:hover:bg-secondary"
       >
         <MinusIcon className="h-6 stroke-gray-500" />
       </button>

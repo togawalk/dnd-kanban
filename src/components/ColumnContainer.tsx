@@ -67,7 +67,7 @@ function ColumnContainer(props: Props) {
       <div
         ref={setNodeRef}
         style={style}
-        className="flex w-[350px] flex-col rounded-md border-2 border-rose-500 bg-secondary opacity-40"
+        className="flex w-[350px] flex-col rounded-md border-2 border-rose-500 bg-gray-100 opacity-40 dark:bg-secondary"
       ></div>
     )
   }
