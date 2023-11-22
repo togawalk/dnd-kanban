@@ -43,7 +43,7 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
       <div
         ref={setNodeRef}
         style={style}
-        className="task flex h-[100px] min-h-[100px] cursor-grab items-start rounded border-2 border-rose-500 bg-gray-100 p-2 opacity-30 dark:bg-background"
+        className="task flex h-[100px] min-h-[100px] cursor-grab items-start rounded border-2 border-rose-500 bg-background p-2 opacity-30"
       />
     )
   }
@@ -55,12 +55,12 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
         style={style}
         {...attributes}
         {...listeners}
-        className="task flex h-[100px] min-h-[100px] cursor-grab items-start gap-2 break-all rounded bg-background bg-gray-300 p-2 ring-2 ring-inset ring-orange-600"
+        className="task flex h-[100px] min-h-[100px] cursor-grab items-start gap-2 break-all rounded bg-card p-2 ring-2 ring-inset ring-orange-600"
       >
         <textarea
           name=""
           id=""
-          className="h-full w-full resize-none rounded border-none bg-transparent focus:outline-none dark:text-white"
+          className="h-full w-full resize-none rounded border-none bg-transparent text-foreground focus:outline-none"
           value={task.content}
           autoFocus
           placeholder="Task content here"
@@ -93,7 +93,7 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
       {...attributes}
       {...listeners}
       onDoubleClick={toggleEditMode}
-      className="task flex h-[100px] min-h-[100px] cursor-grab items-start gap-2 rounded bg-gray-300 p-2 hover:ring-2 hover:ring-inset hover:ring-rose-800 dark:bg-background"
+      className="task flex h-[100px] min-h-[100px] cursor-grab items-start gap-2 rounded bg-card p-2 hover:ring-2 hover:ring-inset hover:ring-rose-800"
     >
       <p className="my-auto h-[100%] w-full overflow-y-auto whitespace-pre-wrap break-all">
         {task.content}
@@ -103,7 +103,7 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
           deleteTask(task.id)
         }}
         type="button"
-        className="rounded px-1 py-1 hover:bg-gray-400/30 hover:stroke-white dark:hover:bg-secondary"
+        className="rounded px-1 py-1 hover:bg-secondary hover:stroke-white"
       >
         <MinusIcon className="h-6 stroke-gray-500" />
       </button>

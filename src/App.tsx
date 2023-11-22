@@ -44,10 +44,9 @@ function App() {
 
   return (
     <div className="flex min-h-screen flex-col gap-4 p-4">
-      <header className="h-16 rounded-md border-4 border-gray-300 bg-gray-200 font-mono dark:border-secondary dark:bg-background">
-        <div className="flex h-full items-center justify-between px-6">
-          <div className="font-bold uppercase">dnd-kanban</div>
-          <div className="flex items-center space-x-4">
+      <header className="h-12 font-mono">
+        <div className="flex h-full items-center px-6">
+          <div className="flex-end flex items-center space-x-4">
             <DarkModeSwitch
               checked={isDarkMode}
               onChange={toggleDarkMode}
