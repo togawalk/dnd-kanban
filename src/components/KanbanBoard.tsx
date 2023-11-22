@@ -82,7 +82,7 @@ function KanbanBoard() {
           </div>
           <button
             type="button"
-            className="flex h-[60px] w-[360px] min-w-[350px] cursor-pointer gap-2 rounded-lg border-2 border-secondary bg-card p-4 font-mono text-secondary-foreground ring-accent-foreground hover:ring-2"
+            className="flex h-[60px] w-[360px] min-w-[350px] cursor-pointer gap-2 rounded-lg border-2 border-secondary bg-card p-4 font-mono text-secondary-foreground ring-accent-foreground transition-colors hover:ring-2"
             onClick={() => {
               createNewColumn()
             }}

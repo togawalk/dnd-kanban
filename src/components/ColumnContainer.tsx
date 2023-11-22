@@ -76,9 +76,9 @@ function ColumnContainer(props: Props) {
     <div
       ref={setNodeRef}
       style={style}
-      className="flex h-[500px] max-h-[500px] w-[350px] flex-col rounded-md bg-secondary"
+      className="flex h-[500px] max-h-[500px] w-[350px] flex-col rounded-md bg-secondary transition-colors"
     >
-      <div className="flex h-[60px] items-center justify-between  gap-4 rounded-md rounded-b-none border-4 border-secondary bg-card p-3 font-bold">
+      <div className="flex h-[60px] items-center justify-between  gap-4 rounded-md rounded-b-none border-4 border-secondary bg-card p-3 font-bold transition-colors">
         <div className="flex flex-1 items-center gap-2">
           <button
             {...attributes}
@@ -95,7 +95,7 @@ function ColumnContainer(props: Props) {
             {!editMode && column.title}
             {editMode && (
               <input
-                className="w-full rounded bg-secondary px-2 outline-none ring-2 ring-input"
+                className="w-full rounded bg-secondary px-2 outline-none ring-2 ring-input transition-colors"
                 autoFocus
                 onChange={(e) => updateColumn(column.id, e.target.value)}
                 value={column.title}
@@ -139,7 +139,7 @@ function ColumnContainer(props: Props) {
       </div>
       <button
         type="button"
-        className="flex items-center gap-2 rounded-md border-2 border-secondary bg-card p-4 font-mono text-secondary-foreground hover:text-foreground"
+        className="flex items-center gap-2 rounded-md border-2 border-secondary bg-card p-4 font-mono text-secondary-foreground transition-colors hover:bg-card/80 hover:text-accent-foreground"
         onClick={() => {
           createTask(column.id)
         }}

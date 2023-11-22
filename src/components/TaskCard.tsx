@@ -43,7 +43,7 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
       <div
         ref={setNodeRef}
         style={style}
-        className="task flex h-[100px] min-h-[100px] cursor-grab items-start rounded border-2 border-rose-500 bg-background p-2 opacity-30"
+        className="task flex h-[100px] min-h-[100px] cursor-grab items-start rounded border-2 border-accent-foreground bg-background p-2 opacity-30"
       />
     )
   }
@@ -55,7 +55,7 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
         style={style}
         {...attributes}
         {...listeners}
-        className="task flex h-[100px] min-h-[100px] cursor-grab items-start gap-2 break-all rounded bg-card p-2 ring-2 ring-inset ring-orange-600"
+        className="task flex h-[100px] min-h-[100px] cursor-grab items-start gap-2 break-all rounded bg-card p-2 ring-2 ring-inset ring-accent-foreground"
       >
         <textarea
           name=""
@@ -93,7 +93,7 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
       {...attributes}
       {...listeners}
       onDoubleClick={toggleEditMode}
-      className="task flex h-[100px] min-h-[100px] cursor-grab items-start gap-2 rounded bg-card p-2 hover:ring-2 hover:ring-inset hover:ring-rose-800"
+      className="task flex h-[100px] min-h-[100px] cursor-grab items-start gap-2 rounded bg-card p-2 transition-colors hover:ring-2 hover:ring-inset hover:ring-accent-foreground"
     >
       <p className="my-auto h-[100%] w-full overflow-y-auto whitespace-pre-wrap break-all">
         {task.content}
