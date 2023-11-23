@@ -28,6 +28,10 @@ body,
   @apply rounded-xl bg-sky-500;
 }
 
+main {
+  min-height: calc(100vh - theme('spacing.16'));
+}
+
 :root {
   --background: 220 13% 91%;
   --foreground: 240 10% 3.9%;

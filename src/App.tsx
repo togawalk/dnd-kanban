@@ -43,26 +43,22 @@ function App() {
   }, [isDarkMode])
 
   return (
-    <div className="flex min-h-screen flex-col gap-4 p-4">
-      <header className="h-12 font-mono">
-        <div className="flex h-full items-center px-6">
-          <div className="flex-end flex items-center space-x-4">
-            <DarkModeSwitch
-              checked={isDarkMode}
-              onChange={toggleDarkMode}
-              size={20}
-              sunColor="rgb(17 24 39 / var(--tw-text-opacity))"
-              moonColor="rgb(229 231 235 / var(--tw-text-opacity))"
-            />
+    <div className="min-h-screen">
+      <header className="flex h-16 items-center space-x-4 px-6 font-mono">
+        <DarkModeSwitch
+          checked={isDarkMode}
+          onChange={toggleDarkMode}
+          size={20}
+          sunColor="rgb(17 24 39 / var(--tw-text-opacity))"
+          moonColor="rgb(229 231 235 / var(--tw-text-opacity))"
+        />
 
-            <a
-              href="https://github.com/togawalk/dnd-kanban"
-              className="text-gray-900 dark:text-gray-200"
-            >
-              <AiFillGithub className="h-6 w-6" />
-            </a>
-          </div>
-        </div>
+        <a
+          href="https://github.com/togawalk/dnd-kanban"
+          className="text-gray-900 dark:text-gray-200"
+        >
+          <AiFillGithub className="h-6 w-6" />
+        </a>
       </header>
       <KanbanBoard />
     </div>

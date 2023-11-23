@@ -56,30 +56,28 @@ function KanbanBoard() {
   )
 
   return (
-    <div className="m-auto flex min-h-screen w-full items-center overflow-x-auto overflow-y-hidden px-[40px]">
+    <main className="flex w-full items-center overflow-x-auto overflow-y-hidden px-6 py-2">
       <DndContext
         onDragStart={onDragStart}
         onDragEnd={onDragEnd}
         sensors={sensors}
         onDragOver={onDragOver}
       >
-        <div className="m-auto flex gap-4">
-          <div className="flex gap-4">
-            <SortableContext items={columnsId}>
-              {columns.map((col) => (
-                <ColumnContainer
-                  key={col.id}
-                  column={col}
-                  deleteColumn={deleteColumn}
-                  updateColumn={updateColumn}
-                  createTask={createTask}
-                  tasks={tasks.filter((task) => task.columnId === col.id)}
-                  deleteTask={deleteTask}
-                  updateTask={updateTask}
-                />
-              ))}
-            </SortableContext>
-          </div>
+        <div className="mx-auto flex gap-4">
+          <SortableContext items={columnsId}>
+            {columns.map((col) => (
+              <ColumnContainer
+                key={col.id}
+                column={col}
+                deleteColumn={deleteColumn}
+                updateColumn={updateColumn}
+                createTask={createTask}
+                tasks={tasks.filter((task) => task.columnId === col.id)}
+                deleteTask={deleteTask}
+                updateTask={updateTask}
+              />
+            ))}
+          </SortableContext>
           <button
             type="button"
             className="flex h-[60px] w-[360px] min-w-[350px] cursor-pointer gap-2 rounded-lg border-2 border-secondary bg-card p-4 font-mono text-secondary-foreground ring-accent-foreground transition-colors hover:ring-2"
@@ -116,7 +114,7 @@ function KanbanBoard() {
           document.body
         )}
       </DndContext>
-    </div>
+    </main>
   )
 
   function createTask(columnId: Id) {
