@@ -2,7 +2,7 @@
 
 Drag and drop kanban board build with React and [@dnd-kit/core](https://github.com/clauderic/dnd-kit)
 
-![sreenshot](https://github.com/togawalk/dnd-kanban/assets/dnd-kanban.jpg)
+![sreenshot](https://github.com/togawalk/dnd-kanban/blob/main/assets/dnd-kanban.jpg)
 
 ## Features
 
