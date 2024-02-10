@@ -9,5 +9,10 @@ Drag and drop kanban board build with React and [@dnd-kit/core](https://github.c
 - Built with TypeScript
 - TailwindCSS
 - [React Icons](https://www.npmjs.com/package/react-icons)
-- Husky & Prettier & ESLint
+- Prettier & ESLint
 - Dark Mode
+
+## TODO
+
+- [x] Delete Husky
+- [ ] Use CI instead of husky.
